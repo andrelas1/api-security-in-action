@@ -2,6 +2,8 @@ package com.manning.apisecurityinaction.app.config;
 
 import com.manning.apisecurityinaction.app.controller.SpaceController;
 import com.manning.apisecurityinaction.app.core.DatabaseService;
+import com.manning.apisecurityinaction.app.exception.GlobalExceptionHandler;
+import com.manning.apisecurityinaction.app.filter.RequestLoggerFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,6 +12,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackageClasses = {
         SpaceController.class,
+        RequestLoggerFilter.class,
+        GlobalExceptionHandler.class
 })
 public class AppConfiguration {
     @Value("${spring.datasource.url}")
@@ -23,7 +27,6 @@ public class AppConfiguration {
 
     @Bean
     public DatabaseService databaseService() {
-        System.out.println("HELLO");
         return new DatabaseService(url, username, password);
     }
 }
