@@ -7,7 +7,10 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackageClasses = {
         RequestLoggerFilter.class,
         BrowserSecureHeadersFilter.class,
-        ContentTypeCheckFilter.class
+        ContentTypeCheckFilter.class,
+        RateLimiterFilter.class,
+        AuthenticationFilter.class
+
 })
 public class AppFilterConfiguration {
 }

@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16 # Use postgres image, you can specify version
+    container_name: postgres_db #custom name for container
+    environment:
+      POSTGRES_USER: user # Replace with your desired username
+      POSTGRES_PASSWORD: password # Replace with your desired password
+      POSTGRES_DB: testdb # Replace with your desired database name
+    ports:
+      - 5434:5432 # Expose the PostgreSQL port
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Persist data to a named volume
+      - ./init-scripts:/docker-entrypoint-initdb.d # Load init scripts
+    restart: always # Restart the container automatically
+
+volumes: # Define the named volume
+  pgdata:
